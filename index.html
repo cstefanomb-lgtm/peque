@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¡Feliz Día de las Flores Amarillas! 🌼</title>
+  <style>
+    :root {
+      --bg-color: #fefae0;
+      --card-bg: #ffffff;
+      --text-color: #333333;
+      --accent-yellow: #f4d03f;
+      --border-color: #f39c12;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fefae0 0%, #f9e79f 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-color);
+      overflow-x: hidden;
+      cursor: pointer;
+    }
+
+    .container {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 440px;
+      width: 90%;
+      margin: 20px;
+      border: 3px solid var(--accent-yellow);
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #d4ac0d;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p.subtitle {
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Marco para la foto de la persona */
+    .photo-frame {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 1.5rem auto;
+      border-radius: 50%;
+      border: 5px solid var(--accent-yellow);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fcf3cf;
+      box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Separador elegante */
+    .divider {
+      margin: 1.5rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 1.2rem;
+      color: #d4ac0d;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #f39c12, transparent);
+    }
+
+    /* Cuadro de dedicatoria */
+    .dedication-box {
+      background-color: #fef9e7;
+      border: 2px dashed #f39c12;
+      border-radius: 15px;
+      padding: 1.2rem;
+      margin-top: 1rem;
+      text-align: center;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
+    }
+
+    .dedication-box h3 {
+      margin: 0 0 0.5rem 0;
+      color: #b7950b;
+      font-size: 1.1rem;
+    }
+
+    .dedication-box p {
+      margin: 0;
+      color: #555;
+      font-style: italic;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    /* Mensaje flotante de interacción */
+    .music-hint {
+      font-size: 0.85rem;
+      color: #b7950b;
+      margin-top: 15px;
+      font-weight: bold;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Flores flotantes de fondo */
+    .floating-flower {
+      position: absolute;
+      font-size: 1.8rem;
+      user-select: none;
+      pointer-events: none;
+      animation: float 6s infinite linear;
+      z-index: 1;
+      opacity: 0.7;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>¡Muchas Felicidades! ✨</h1>
+    <p class="subtitle">Te entrego estas flores amarillas con mucho cariño 🌸</p>
+
+    <!-- Foto circular principal -->
+    <div class="photo-frame">
+      <img src="WhatsApp Image 2026-09-21 at 10.11.37 PM.jpeg" alt="Foto especial">
+    </div>
+
+    <!-- Separador estilizado -->
+    <div class="divider">🌻 🌼 🌻</div>
+
+    <!-- Cuadro para la dedicatoria -->
+    <div class="dedication-box">
+      <h3>✨ Para mi peque ✨</h3>
+      <p>
+        "Nos conocimos recien este año, y no puedo estar mas agradecido con la vida de q te haya puesto en mi camino.
+        Eres lo mejor que me ha pasado, esta cancion de fondo representa lo mucho que te quiero y lo importante que eres para mi.
+        ¡Que estas flores amarillas te traigan tanta alegría y luz como la que tú le das a mi vida!"
+      </p>
+    </div>
+
+    <div id="music-hint" class="music-hint">🎵 Toca cualquier parte de la pantalla para escuchar la canción 🎵</div>
+
+    <!-- Reproductor de audio oculto para música de fondo -->
+    <audio id="bg-music" loop style="display: none;">
+      <source src="Maná - Eres Mi Religión (Video Oficial).mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <script>
+    const audio = document.getElementById('bg-music');
+    const hint = document.getElementById('music-hint');
+
+    // Reproducción al cargar o al hacer clic/tap en la pantalla
+    function playAudio() {
+      audio.play().then(() => {
+        if (hint) hint.style.display = 'none';
+      }).catch(() => {});
+    }
+
+    window.addEventListener('load', playAudio);
+    document.addEventListener('click', playAudio);
+    document.addEventListener('touchstart', playAudio);
+
+    // Generar flores flotantes de fondo
+    function createFloatingFlower() {
+      const flower = document.createElement('div');
+      flower.classList.add('floating-flower');
+      flower.innerText = Math.random() > 0.5 ? '🌼' : '🌻';
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.animationDuration = (Math.random() * 3 + 4) + 's';
+      document.body.appendChild(flower);
+
+      setTimeout(() => {
+        flower.remove();
+      }, 7000);
+    }
+
+    setInterval(createFloatingFlower, 600);
+  </script>
+</body>
+</html>
